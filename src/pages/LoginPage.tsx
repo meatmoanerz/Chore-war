@@ -2,24 +2,34 @@ import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div
+      className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+      style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%)' }}
+    >
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-display font-bold text-purple-600 mb-2">
+          <h1 className="text-4xl font-bold mb-2" style={{ color: '#7c3aed' }}>
             Chore War
           </h1>
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-bold" style={{ color: '#1f2937' }}>
             Välkommen tillbaka!
           </h2>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2" style={{ color: '#4b5563' }}>
             Logga in för att fortsätta
           </p>
         </div>
 
-        <form className="mt-8 space-y-6 bg-white p-8 rounded-2xl shadow-xl">
+        <form
+          className="mt-8 space-y-6 p-8 rounded-2xl"
+          style={{ backgroundColor: '#ffffff', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
+        >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium mb-1"
+                style={{ color: '#374151' }}
+              >
                 E-post
               </label>
               <input
@@ -28,12 +38,21 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="appearance-none relative block w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
+                style={{
+                  border: '1px solid #d1d5db',
+                  color: '#111827',
+                  backgroundColor: '#ffffff'
+                }}
                 placeholder="din@email.se"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium mb-1"
+                style={{ color: '#374151' }}
+              >
                 Lösenord
               </label>
               <input
@@ -42,7 +61,12 @@ export default function LoginPage() {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="appearance-none relative block w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
+                style={{
+                  border: '1px solid #d1d5db',
+                  color: '#111827',
+                  backgroundColor: '#ffffff'
+                }}
                 placeholder="••••••••"
               />
             </div>
@@ -54,15 +78,16 @@ export default function LoginPage() {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
-                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                className="h-4 w-4 rounded"
+                style={{ accentColor: '#7c3aed' }}
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+              <label htmlFor="remember-me" className="ml-2 block text-sm" style={{ color: '#374151' }}>
                 Kom ihåg mig
               </label>
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-purple-600 hover:text-purple-500">
+              <a href="#" className="font-medium" style={{ color: '#7c3aed' }}>
                 Glömt lösenord?
               </a>
             </div>
@@ -71,7 +96,12 @@ export default function LoginPage() {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent text-base font-medium rounded-xl text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors shadow-lg"
+              className="w-full flex justify-center py-3 px-4 text-base font-medium rounded-xl transition-colors"
+              style={{
+                backgroundColor: '#7c3aed',
+                color: '#ffffff',
+                boxShadow: '0 10px 25px rgba(124, 58, 237, 0.3)'
+              }}
             >
               Logga in
             </button>
@@ -79,17 +109,22 @@ export default function LoginPage() {
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
+              <div className="w-full" style={{ borderTop: '1px solid #d1d5db' }}></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Eller</span>
+              <span className="px-2" style={{ backgroundColor: '#ffffff', color: '#6b7280' }}>Eller</span>
             </div>
           </div>
 
           <div>
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-300 rounded-xl text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl text-base font-medium transition-colors"
+              style={{
+                border: '1px solid #d1d5db',
+                color: '#374151',
+                backgroundColor: '#ffffff'
+              }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -113,9 +148,9 @@ export default function LoginPage() {
             </button>
           </div>
 
-          <div className="text-center text-sm text-gray-600">
+          <div className="text-center text-sm" style={{ color: '#4b5563' }}>
             Inget konto än?{' '}
-            <Link to="/signup" className="font-medium text-purple-600 hover:text-purple-500">
+            <Link to="/signup" className="font-medium" style={{ color: '#7c3aed' }}>
               Registrera dig här
             </Link>
           </div>
