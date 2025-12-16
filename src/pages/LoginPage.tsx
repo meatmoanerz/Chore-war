@@ -2,10 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
   return (
-    <div
-      className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
-      style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%)' }}
-    >
+    <div className="login-page min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-2" style={{ color: '#7c3aed' }}>

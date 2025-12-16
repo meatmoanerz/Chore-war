@@ -1,6 +1,6 @@
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#f3f4f6' }}>
+    <div className="dashboard-page min-h-screen">
       {/* Header */}
       <header style={{ backgroundColor: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

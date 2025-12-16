@@ -2,10 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
-    <div
-      className="min-h-screen flex items-center justify-center"
-      style={{ background: 'linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #f97316 100%)' }}
-    >
+    <div className="home-page min-h-screen flex items-center justify-center">
       <div className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h1
           className="text-6xl font-bold mb-6"

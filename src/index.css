@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Force proper colors - override any conflicts */
+.home-page {
+  background: linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #f97316 100%) !important;
+  min-height: 100vh;
+}
+
+.home-page h1,
+.home-page p,
+.home-page h3 {
+  color: #ffffff !important;
+}
+
+.login-page {
+  background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%) !important;
+  min-height: 100vh;
+}
+
+.login-page h1 {
+  color: #7c3aed !important;
+}
+
+.login-page h2 {
+  color: #1f2937 !important;
+}
+
+.login-page p,
+.login-page label {
+  color: #4b5563 !important;
+}
+
+.dashboard-page {
+  background-color: #f3f4f6 !important;
+  min-height: 100vh;
+}
+
+.dashboard-page h1 {
+  color: #7c3aed !important;
+}
+
+.dashboard-page h2,
+.dashboard-page h3 {
+  color: #1f2937 !important;
+}
+
 @layer base {
   :root {
     font-family: 'Inter var', 'Inter', system-ui, -apple-system, sans-serif;
@@ -17,11 +61,8 @@
   }
 
   body {
-    @apply m-0 min-h-screen bg-gray-50 text-gray-900;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold;
+    margin: 0;
+    min-height: 100vh;
   }
 }
 
