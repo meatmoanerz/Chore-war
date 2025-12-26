@@ -2,30 +2,52 @@ import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
   return (
-    <div className="login-page min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-2" style={{ color: '#7c3aed' }}>
+    <div className="login-page min-h-screen px-4 py-8">
+      <div className="max-w-md mx-auto">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <div style={{ fontSize: '48px', marginBottom: '8px' }}>🎮</div>
+          <h1 style={{ color: '#1A1A1A', fontSize: '28px', fontWeight: '700', marginBottom: '4px' }}>
             Chore War
           </h1>
-          <h2 className="text-2xl font-bold" style={{ color: '#1f2937' }}>
+          <p style={{ color: '#6B7280', fontSize: '15px', margin: 0 }}>
             Välkommen tillbaka!
-          </h2>
-          <p className="mt-2" style={{ color: '#4b5563' }}>
-            Logga in för att fortsätta
           </p>
         </div>
 
-        <form
-          className="mt-8 space-y-6 p-8 rounded-2xl"
-          style={{ backgroundColor: '#ffffff', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
+        {/* Login Card */}
+        <div
+          style={{
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '28px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
+          }}
         >
-          <div className="space-y-4">
-            <div>
+          {/* Avatar/Profile placeholder */}
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <div
+              style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)',
+                margin: '0 auto',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '36px'
+              }}
+            >
+              👋
+            </div>
+          </div>
+
+          <form>
+            <div style={{ marginBottom: '16px' }}>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium mb-1"
-                style={{ color: '#374151' }}
+                style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#1A1A1A', marginBottom: '8px' }}
               >
                 E-post
               </label>
@@ -35,20 +57,25 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none relative block w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
-                style={{
-                  border: '1px solid #d1d5db',
-                  color: '#111827',
-                  backgroundColor: '#ffffff'
-                }}
                 placeholder="din@email.se"
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '14px',
+                  border: '2px solid #E5E7EB',
+                  fontSize: '15px',
+                  color: '#1A1A1A',
+                  background: '#FFFFFF',
+                  outline: 'none',
+                  boxSizing: 'border-box'
+                }}
               />
             </div>
-            <div>
+
+            <div style={{ marginBottom: '16px' }}>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium mb-1"
-                style={{ color: '#374151' }}
+                style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#1A1A1A', marginBottom: '8px' }}
               >
                 Lösenord
               </label>
@@ -58,100 +85,96 @@ export default function LoginPage() {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none relative block w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2"
-                style={{
-                  border: '1px solid #d1d5db',
-                  color: '#111827',
-                  backgroundColor: '#ffffff'
-                }}
                 placeholder="••••••••"
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '14px',
+                  border: '2px solid #E5E7EB',
+                  fontSize: '15px',
+                  color: '#1A1A1A',
+                  background: '#FFFFFF',
+                  outline: 'none',
+                  boxSizing: 'border-box'
+                }}
               />
             </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 rounded"
-                style={{ accentColor: '#7c3aed' }}
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm" style={{ color: '#374151' }}>
-                Kom ihåg mig
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  style={{ width: '18px', height: '18px', accentColor: '#22C55E', borderRadius: '4px' }}
+                />
+                <span style={{ fontSize: '14px', color: '#6B7280' }}>Kom ihåg mig</span>
               </label>
-            </div>
-
-            <div className="text-sm">
-              <a href="#" className="font-medium" style={{ color: '#7c3aed' }}>
+              <a href="#" style={{ fontSize: '14px', color: '#1A1A1A', fontWeight: '500', textDecoration: 'none' }}>
                 Glömt lösenord?
               </a>
             </div>
-          </div>
 
-          <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 text-base font-medium rounded-xl transition-colors"
               style={{
-                backgroundColor: '#7c3aed',
-                color: '#ffffff',
-                boxShadow: '0 10px 25px rgba(124, 58, 237, 0.3)'
+                width: '100%',
+                padding: '16px',
+                background: '#1A1A1A',
+                color: '#FFFFFF',
+                borderRadius: '14px',
+                fontSize: '16px',
+                fontWeight: '600',
+                border: 'none',
+                cursor: 'pointer',
+                marginBottom: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
               }}
             >
               Logga in
             </button>
-          </div>
 
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full" style={{ borderTop: '1px solid #d1d5db' }}></div>
+            {/* Divider */}
+            <div style={{ display: 'flex', alignItems: 'center', margin: '20px 0' }}>
+              <div style={{ flex: 1, height: '1px', background: '#E5E7EB' }}></div>
+              <span style={{ padding: '0 16px', color: '#6B7280', fontSize: '14px' }}>eller</span>
+              <div style={{ flex: 1, height: '1px', background: '#E5E7EB' }}></div>
             </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2" style={{ backgroundColor: '#ffffff', color: '#6b7280' }}>Eller</span>
-            </div>
-          </div>
 
-          <div>
+            {/* Google Button */}
             <button
               type="button"
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl text-base font-medium transition-colors"
               style={{
-                border: '1px solid #d1d5db',
-                color: '#374151',
-                backgroundColor: '#ffffff'
+                width: '100%',
+                padding: '14px',
+                background: '#FFFFFF',
+                color: '#1A1A1A',
+                borderRadius: '14px',
+                fontSize: '15px',
+                fontWeight: '500',
+                border: '2px solid #E5E7EB',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px'
               }}
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
-                <path
-                  fill="#4285F4"
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                />
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
               Fortsätt med Google
             </button>
-          </div>
+          </form>
 
-          <div className="text-center text-sm" style={{ color: '#4b5563' }}>
+          <p style={{ textAlign: 'center', marginTop: '24px', fontSize: '14px', color: '#6B7280' }}>
             Inget konto än?{' '}
-            <Link to="/signup" className="font-medium" style={{ color: '#7c3aed' }}>
+            <Link to="/signup" style={{ color: '#1A1A1A', fontWeight: '600', textDecoration: 'none' }}>
               Registrera dig här
             </Link>
-          </div>
-        </form>
+          </p>
+        </div>
       </div>
     </div>
   );

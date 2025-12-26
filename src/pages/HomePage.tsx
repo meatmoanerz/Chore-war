@@ -2,96 +2,176 @@ import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
-    <div className="home-page min-h-screen flex items-center justify-center">
-      <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-        <h1
-          className="text-6xl font-bold mb-6"
-          style={{ color: '#ffffff', textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
-        >
-          Chore War 🎮
-        </h1>
-        <p
-          className="text-2xl mb-8"
-          style={{ color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.2)' }}
-        >
-          Gör sysslor roliga för hela familjen!
-        </p>
-        <p
-          className="text-lg mb-12 max-w-2xl mx-auto"
-          style={{ color: 'rgba(255,255,255,0.9)' }}
-        >
-          Förvandla hemmasysslor till ett spännande spel med poäng, belöningar och leaderboards.
-          Motivera barnen samtidigt som du får en tydlig överblick över familjens uppgifter.
-        </p>
+    <div className="home-page min-h-screen px-4 py-8">
+      <div className="max-w-md mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div style={{ fontSize: '64px', marginBottom: '8px' }}>🎮</div>
+          <h1 style={{ color: '#1A1A1A', fontSize: '32px', fontWeight: '700', marginBottom: '8px' }}>
+            Chore War
+          </h1>
+          <p style={{ color: '#6B7280', fontSize: '16px', margin: 0 }}>
+            Gör sysslor roliga för hela familjen!
+          </p>
+        </div>
 
-        <div className="flex gap-4 justify-center flex-wrap">
+        {/* Main Card */}
+        <div
+          style={{
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '24px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+            marginBottom: '16px'
+          }}
+        >
+          {/* Illustration Area */}
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)',
+              borderRadius: '20px',
+              padding: '32px',
+              marginBottom: '24px',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontSize: '64px', marginBottom: '12px' }}>👨‍👩‍👧‍👦</div>
+            <h2 style={{ color: '#1A1A1A', fontSize: '22px', fontWeight: '700', marginBottom: '8px' }}>
+              Great Job!
+            </h2>
+            <p style={{ color: '#6B7280', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
+              Samla poäng tillsammans och nå familjens mål för att låsa upp belöningar
+            </p>
+          </div>
+
+          {/* Features List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '14px',
+                background: '#DCFCE7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '20px',
+                flexShrink: 0
+              }}>✓</div>
+              <div>
+                <div style={{ fontWeight: '600', color: '#1A1A1A', fontSize: '15px' }}>Daily Challenges</div>
+                <div style={{ fontSize: '13px', color: '#6B7280' }}>Slutför dagliga sysslor för att tjäna coins</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '14px',
+                background: '#EDE9FE',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '20px',
+                flexShrink: 0
+              }}>⭐</div>
+              <div>
+                <div style={{ fontWeight: '600', color: '#1A1A1A', fontSize: '15px' }}>Samla poäng</div>
+                <div style={{ fontSize: '13px', color: '#6B7280' }}>Tjäna coins för varje slutförd uppgift</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: '14px',
+                background: '#FEF3C7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '20px',
+                flexShrink: 0
+              }}>🏆</div>
+              <div>
+                <div style={{ fontWeight: '600', color: '#1A1A1A', fontSize: '15px' }}>Leaderboard</div>
+                <div style={{ fontSize: '13px', color: '#6B7280' }}>Tävla med familjen på ett roligt sätt</div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Buttons */}
           <Link
             to="/signup"
-            className="px-8 py-4 rounded-2xl font-bold text-lg transition-all hover:scale-105"
             style={{
-              backgroundColor: '#ffffff',
-              color: '#7c3aed',
-              boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
+              display: 'block',
+              width: '100%',
+              padding: '16px',
+              background: '#1A1A1A',
+              color: '#FFFFFF',
+              borderRadius: '14px',
+              textAlign: 'center',
+              fontWeight: '600',
+              fontSize: '16px',
+              textDecoration: 'none',
+              marginBottom: '12px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
             }}
           >
             Kom igång gratis
           </Link>
+
           <Link
             to="/login"
-            className="px-8 py-4 rounded-2xl font-bold text-lg transition-all"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.2)',
-              color: '#ffffff',
-              border: '2px solid #ffffff',
-              backdropFilter: 'blur(8px)'
+              display: 'block',
+              width: '100%',
+              padding: '16px',
+              background: '#FFFFFF',
+              color: '#1A1A1A',
+              borderRadius: '14px',
+              textAlign: 'center',
+              fontWeight: '600',
+              fontSize: '16px',
+              textDecoration: 'none',
+              border: '2px solid #E5E7EB'
             }}
           >
             Logga in
           </Link>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Bottom Stats Cards */}
+        <div style={{ display: 'flex', gap: '12px' }}>
           <div
-            className="rounded-2xl p-6"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.2)',
-              backdropFilter: 'blur(8px)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+              flex: 1,
+              background: '#FFFFFF',
+              borderRadius: '20px',
+              padding: '20px 16px',
+              textAlign: 'center',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
             }}
           >
-            <div className="text-4xl mb-4">🎯</div>
-            <h3 className="font-bold text-xl mb-2" style={{ color: '#ffffff' }}>Sätt mål</h3>
-            <p style={{ color: 'rgba(255,255,255,0.9)' }}>
-              Skapa vecko- och månadsmål med individuella och gemensamma belöningar
-            </p>
+            <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎯</div>
+            <div style={{ fontWeight: '700', color: '#1A1A1A', fontSize: '15px', marginBottom: '4px' }}>Sätt mål</div>
+            <div style={{ fontSize: '12px', color: '#6B7280' }}>Vecko & månads</div>
           </div>
+
           <div
-            className="rounded-2xl p-6"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.2)',
-              backdropFilter: 'blur(8px)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+              flex: 1,
+              background: '#FFFFFF',
+              borderRadius: '20px',
+              padding: '20px 16px',
+              textAlign: 'center',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
             }}
           >
-            <div className="text-4xl mb-4">⭐</div>
-            <h3 className="font-bold text-xl mb-2" style={{ color: '#ffffff' }}>Samla poäng</h3>
-            <p style={{ color: 'rgba(255,255,255,0.9)' }}>
-              Barn tjänar poäng genom att slutföra sysslor och nå sina mål
-            </p>
-          </div>
-          <div
-            className="rounded-2xl p-6"
-            style={{
-              backgroundColor: 'rgba(255,255,255,0.2)',
-              backdropFilter: 'blur(8px)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
-            }}
-          >
-            <div className="text-4xl mb-4">🏆</div>
-            <h3 className="font-bold text-xl mb-2" style={{ color: '#ffffff' }}>Leaderboard</h3>
-            <p style={{ color: 'rgba(255,255,255,0.9)' }}>
-              Tävla på ett roligt sätt och se vem som bidrar mest i familjen
-            </p>
+            <div style={{ fontSize: '32px', marginBottom: '8px' }}>💰</div>
+            <div style={{ fontWeight: '700', color: '#1A1A1A', fontSize: '15px', marginBottom: '4px' }}>Belöningar</div>
+            <div style={{ fontSize: '12px', color: '#6B7280' }}>Lås upp priser</div>
           </div>
         </div>
       </div>

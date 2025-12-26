@@ -1,190 +1,312 @@
-export default function DashboardPage() {
-  return (
-    <div className="dashboard-page min-h-screen">
-      {/* Header */}
-      <header style={{ backgroundColor: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold" style={{ color: '#7c3aed' }}>
-              Chore War
-            </h1>
-            <div className="flex items-center gap-4">
-              <span style={{ color: '#374151' }}>Familjen Andersson</span>
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center font-bold"
-                style={{ backgroundColor: '#8b5cf6', color: '#ffffff', boxShadow: '0 4px 6px rgba(139,92,246,0.3)' }}
-              >
-                FA
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+import { useState } from 'react';
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Total Points Card */}
+export default function DashboardPage() {
+  const [tasks, setTasks] = useState([
+    { id: 1, title: 'Plocka ur diskmaskinen', points: 50, completed: true, time: '10 min' },
+    { id: 2, title: 'Dammsuga vardagsrummet', points: 100, completed: true, time: '20 min' },
+    { id: 3, title: 'Ta ut soporna', points: 30, completed: false, time: '5 min' },
+    { id: 4, title: 'Bädda sängen', points: 25, completed: false, time: '5 min' },
+    { id: 5, title: 'Vika tvätten', points: 75, completed: false, time: '15 min' },
+  ]);
+
+  const toggleTask = (id: number) => {
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
+  };
+
+  const completedCount = tasks.filter(t => t.completed).length;
+  const totalPoints = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.points, 0);
+
+  return (
+    <div className="dashboard-page min-h-screen px-4 py-6">
+      <div className="max-w-md mx-auto">
+        {/* Header */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+          <div>
+            <p style={{ color: '#6B7280', fontSize: '14px', marginBottom: '4px' }}>Välkommen tillbaka,</p>
+            <h1 style={{ color: '#1A1A1A', fontSize: '24px', fontWeight: '700', margin: 0 }}>Emma! 👋</h1>
+          </div>
           <div
-            className="rounded-2xl p-6"
             style={{
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-              boxShadow: '0 10px 25px rgba(139,92,246,0.3)'
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '24px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
             }}
           >
-            <div className="text-sm mb-1" style={{ color: 'rgba(255,255,255,0.8)' }}>Totala poäng</div>
-            <div className="text-4xl font-bold mb-2" style={{ color: '#ffffff' }}>1,247</div>
-            <div className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>+89 denna vecka</div>
-          </div>
-
-          {/* Active Chores Card */}
-          <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: '#ffffff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
-          >
-            <div className="text-sm mb-1" style={{ color: '#6b7280' }}>Aktiva sysslor</div>
-            <div className="text-4xl font-bold mb-2" style={{ color: '#111827' }}>5</div>
-            <div className="text-sm font-medium" style={{ color: '#059669' }}>3 slutförda idag</div>
-          </div>
-
-          {/* Goal Progress Card */}
-          <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: '#ffffff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
-          >
-            <div className="text-sm mb-1" style={{ color: '#6b7280' }}>Veckomål</div>
-            <div className="flex items-end gap-2 mb-2">
-              <div className="text-4xl font-bold" style={{ color: '#111827' }}>85%</div>
-            </div>
-            <div className="w-full rounded-full h-2" style={{ backgroundColor: '#e5e7eb' }}>
-              <div className="h-2 rounded-full" style={{ width: '85%', backgroundColor: '#10b981' }}></div>
-            </div>
+            👧
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Leaderboard */}
+        {/* Stats Cards */}
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
           <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: '#ffffff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
+            style={{
+              flex: 1,
+              background: '#FFFFFF',
+              borderRadius: '20px',
+              padding: '20px 16px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
+            }}
           >
-            <h2 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#1f2937' }}>
-              <span>🏆</span>
-              Leaderboard (denna vecka)
-            </h2>
-            <div className="space-y-3">
-              {[
-                { rank: 1, name: 'Emma', points: 450, avatar: 'E', bgColor: '#3b82f6' },
-                { rank: 2, name: 'Oscar', points: 380, avatar: 'O', bgColor: '#8b5cf6' },
-                { rank: 3, name: 'Lisa', points: 320, avatar: 'L', bgColor: '#f97316' },
-              ].map((user) => (
-                <div
-                  key={user.rank}
-                  className="flex items-center gap-4 p-3 rounded-xl transition-colors"
-                  style={{ cursor: 'pointer' }}
-                >
-                  <div className="text-xl font-bold w-6" style={{ color: '#9ca3af' }}>
-                    {user.rank === 1 ? '🥇' : user.rank === 2 ? '🥈' : '🥉'}
-                  </div>
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center font-bold"
-                    style={{ backgroundColor: user.bgColor, color: '#ffffff', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
-                  >
-                    {user.avatar}
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-medium" style={{ color: '#111827' }}>{user.name}</div>
-                    <div className="text-sm" style={{ color: '#6b7280' }}>{user.points} poäng</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div style={{ fontSize: '28px', marginBottom: '8px' }}>🏆</div>
+            <div style={{ fontWeight: '700', color: '#1A1A1A', fontSize: '24px', marginBottom: '4px' }}>1,247</div>
+            <div style={{ fontSize: '13px', color: '#6B7280' }}>Totala poäng</div>
           </div>
 
-          {/* Available Chores */}
           <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: '#ffffff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
+            style={{
+              flex: 1,
+              background: '#FFFFFF',
+              borderRadius: '20px',
+              padding: '20px 16px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
+            }}
           >
-            <h2 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#1f2937' }}>
-              <span>✨</span>
-              Tillgängliga sysslor
-            </h2>
-            <div className="space-y-3">
-              {[
-                { title: 'Plocka ur diskmaskinen', points: 50, time: '10 min' },
-                { title: 'Dammsuga vardagsrummet', points: 100, time: '20 min' },
-                { title: 'Ta ut soporna', points: 30, time: '5 min' },
-              ].map((chore, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-4 rounded-xl transition-all cursor-pointer"
-                  style={{ border: '2px solid #e5e7eb' }}
-                >
-                  <div>
-                    <div className="font-medium" style={{ color: '#111827' }}>{chore.title}</div>
-                    <div className="text-sm" style={{ color: '#6b7280' }}>{chore.time}</div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-bold" style={{ color: '#7c3aed' }}>{chore.points}p</span>
-                    <button
-                      className="px-4 py-2 rounded-lg font-medium text-sm transition-colors"
-                      style={{
-                        backgroundColor: '#8b5cf6',
-                        color: '#ffffff',
-                        boxShadow: '0 4px 6px rgba(139,92,246,0.3)'
-                      }}
-                    >
-                      Claima
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div style={{ fontSize: '28px', marginBottom: '8px' }}>⭐</div>
+            <div style={{ fontWeight: '700', color: '#1A1A1A', fontSize: '24px', marginBottom: '4px' }}>12</div>
+            <div style={{ fontSize: '13px', color: '#6B7280' }}>Dagar i rad</div>
           </div>
         </div>
 
-        {/* Goals Section */}
+        {/* Weekly Progress Card */}
         <div
-          className="mt-6 rounded-2xl p-6"
-          style={{ backgroundColor: '#ffffff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
+          style={{
+            background: 'linear-gradient(135deg, #22C55E 0%, #16A34A 100%)',
+            borderRadius: '24px',
+            padding: '24px',
+            marginBottom: '20px',
+            boxShadow: '0 8px 24px rgba(34, 197, 94, 0.25)'
+          }}
         >
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#1f2937' }}>
-            <span>🎯</span>
-            Mina mål
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-xl p-4" style={{ border: '2px solid #e5e7eb' }}>
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-medium" style={{ color: '#111827' }}>Veckomål</h3>
-                <span className="text-sm" style={{ color: '#6b7280' }}>300 / 400 poäng</span>
-              </div>
-              <div className="w-full rounded-full h-3 mb-2" style={{ backgroundColor: '#e5e7eb' }}>
-                <div className="h-3 rounded-full" style={{ width: '75%', backgroundColor: '#8b5cf6' }}></div>
-              </div>
-              <div className="text-sm" style={{ color: '#4b5563' }}>
-                Belöning: <span className="font-medium">Veckopeng + bio</span>
-              </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <div>
+              <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '14px', marginBottom: '4px' }}>Veckomål</div>
+              <div style={{ color: '#FFFFFF', fontSize: '28px', fontWeight: '700' }}>85%</div>
             </div>
+            <div style={{ fontSize: '48px' }}>🎯</div>
+          </div>
+          <div style={{ background: 'rgba(255,255,255,0.3)', borderRadius: '10px', height: '8px' }}>
+            <div style={{ background: '#FFFFFF', borderRadius: '10px', height: '8px', width: '85%' }}></div>
+          </div>
+          <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '13px', marginTop: '12px' }}>
+            300 / 400 poäng - Bara 100 poäng kvar!
+          </div>
+        </div>
 
-            <div
-              className="rounded-xl p-4"
-              style={{ border: '2px solid #86efac', backgroundColor: '#f0fdf4' }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-medium" style={{ color: '#166534' }}>Familjemål</h3>
-                <span className="text-sm" style={{ color: '#15803d' }}>1,200 / 1,000 poäng ✓</span>
+        {/* Today's Tasks Card */}
+        <div
+          style={{
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '24px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+            marginBottom: '20px'
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <h2 style={{ color: '#1A1A1A', fontSize: '18px', fontWeight: '700', margin: 0 }}>
+              Dagens sysslor
+            </h2>
+            <div style={{
+              background: '#DCFCE7',
+              color: '#16A34A',
+              padding: '6px 12px',
+              borderRadius: '20px',
+              fontSize: '13px',
+              fontWeight: '600'
+            }}>
+              {completedCount}/{tasks.length}
+            </div>
+          </div>
+
+          {/* Task List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {tasks.map((task) => (
+              <div
+                key={task.id}
+                onClick={() => toggleTask(task.id)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '14px',
+                  padding: '14px',
+                  borderRadius: '16px',
+                  background: task.completed ? '#F0FDF4' : '#F9FAFB',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {/* Checkbox */}
+                <div
+                  style={{
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    border: task.completed ? 'none' : '2px solid #D1D5DB',
+                    background: task.completed ? '#22C55E' : 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}
+                >
+                  {task.completed && (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  )}
+                </div>
+
+                {/* Task Info */}
+                <div style={{ flex: 1 }}>
+                  <div style={{
+                    fontWeight: '500',
+                    color: task.completed ? '#16A34A' : '#1A1A1A',
+                    fontSize: '15px',
+                    textDecoration: task.completed ? 'line-through' : 'none'
+                  }}>
+                    {task.title}
+                  </div>
+                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>
+                    {task.time}
+                  </div>
+                </div>
+
+                {/* Points */}
+                <div style={{
+                  fontWeight: '700',
+                  color: task.completed ? '#22C55E' : '#1A1A1A',
+                  fontSize: '15px'
+                }}>
+                  +{task.points}
+                </div>
               </div>
-              <div className="w-full rounded-full h-3 mb-2" style={{ backgroundColor: '#bbf7d0' }}>
-                <div className="h-3 rounded-full" style={{ width: '100%', backgroundColor: '#16a34a' }}></div>
+            ))}
+          </div>
+
+          {/* Points earned today */}
+          <div style={{
+            marginTop: '20px',
+            paddingTop: '16px',
+            borderTop: '1px solid #E5E7EB',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <span style={{ color: '#6B7280', fontSize: '14px' }}>Poäng idag</span>
+            <span style={{ color: '#22C55E', fontSize: '20px', fontWeight: '700' }}>+{totalPoints}</span>
+          </div>
+        </div>
+
+        {/* Leaderboard Card */}
+        <div
+          style={{
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '24px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+            marginBottom: '20px'
+          }}
+        >
+          <h2 style={{ color: '#1A1A1A', fontSize: '18px', fontWeight: '700', margin: 0, marginBottom: '20px' }}>
+            🏆 Leaderboard
+          </h2>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[
+              { rank: 1, name: 'Emma', points: 450, emoji: '👧', bg: '#FEF3C7' },
+              { rank: 2, name: 'Oscar', points: 380, emoji: '👦', bg: '#EDE9FE' },
+              { rank: 3, name: 'Lisa', points: 320, emoji: '👩', bg: '#FCE7F3' },
+            ].map((user) => (
+              <div
+                key={user.rank}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '14px',
+                  padding: '12px',
+                  borderRadius: '16px',
+                  background: user.rank === 1 ? '#FFFBEB' : '#F9FAFB'
+                }}
+              >
+                <div style={{ fontSize: '24px', width: '32px', textAlign: 'center' }}>
+                  {user.rank === 1 ? '🥇' : user.rank === 2 ? '🥈' : '🥉'}
+                </div>
+                <div
+                  style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    background: user.bg,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '24px'
+                  }}
+                >
+                  {user.emoji}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: '600', color: '#1A1A1A', fontSize: '15px' }}>{user.name}</div>
+                  <div style={{ fontSize: '13px', color: '#6B7280' }}>{user.points} poäng</div>
+                </div>
+                {user.rank === 1 && (
+                  <div style={{ display: 'flex', gap: '2px' }}>
+                    {[1,2,3,4,5].map(i => (
+                      <span key={i} style={{ fontSize: '14px' }}>⭐</span>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div className="text-sm" style={{ color: '#15803d' }}>
-                <span className="font-medium">Mål uppnått! 🎉</span> Hela familjen går på äventyrsbad!
-              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Family Goal Card */}
+        <div
+          style={{
+            background: 'linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)',
+            borderRadius: '24px',
+            padding: '24px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+            <div style={{ fontSize: '48px' }}>🎉</div>
+            <div>
+              <h3 style={{ color: '#1A1A1A', fontSize: '18px', fontWeight: '700', margin: 0, marginBottom: '4px' }}>
+                Familjemål uppnått!
+              </h3>
+              <p style={{ color: '#6B7280', fontSize: '14px', margin: 0 }}>
+                1,200 / 1,000 poäng
+              </p>
+            </div>
+          </div>
+          <div
+            style={{
+              background: '#FFFFFF',
+              borderRadius: '16px',
+              padding: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}
+          >
+            <div style={{ fontSize: '32px' }}>🏊</div>
+            <div>
+              <div style={{ fontWeight: '600', color: '#1A1A1A', fontSize: '15px' }}>Belöning upplåst!</div>
+              <div style={{ fontSize: '13px', color: '#6B7280' }}>Hela familjen går på äventyrsbad</div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
