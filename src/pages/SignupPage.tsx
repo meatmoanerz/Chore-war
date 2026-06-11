@@ -2,31 +2,84 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function LoginPage() {
+export default function SignupPage() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const [success, setSuccess] = useState(false);
+  const { signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (password !== confirmPassword) {
+      setError('Lösenorden matchar inte');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Lösenordet måste vara minst 6 tecken');
+      return;
+    }
+
     setLoading(true);
 
-    const { error } = await signIn(email, password);
+    const { error } = await signUp(email, password, name);
 
     if (error) {
       setError(error.message);
       setLoading(false);
     } else {
-      navigate('/dashboard');
+      setSuccess(true);
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
     }
   };
 
+  if (success) {
+    return (
+      <div className="signup-page min-h-screen px-4 py-8">
+        <div className="max-w-md mx-auto">
+          <div
+            style={{
+              background: '#FFFFFF',
+              borderRadius: '24px',
+              padding: '40px 28px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontSize: '64px', marginBottom: '16px' }}>🎉</div>
+            <h2 style={{ color: '#1A1A1A', fontSize: '24px', fontWeight: '700', marginBottom: '12px' }}>
+              Välkommen till Chore War!
+            </h2>
+            <p style={{ color: '#6B7280', fontSize: '15px', marginBottom: '24px' }}>
+              Kolla din e-post för att bekräfta ditt konto.
+            </p>
+            <div style={{
+              background: '#DCFCE7',
+              color: '#16A34A',
+              padding: '12px 20px',
+              borderRadius: '12px',
+              fontSize: '14px',
+              fontWeight: '500'
+            }}>
+              Omdirigerar till dashboard...
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="login-page min-h-screen px-4 py-8">
+    <div className="signup-page min-h-screen px-4 py-8">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
@@ -35,11 +88,11 @@ export default function LoginPage() {
             Chore War
           </h1>
           <p style={{ color: '#6B7280', fontSize: '15px', margin: 0 }}>
-            Välkommen tillbaka!
+            Skapa ditt konto
           </p>
         </div>
 
-        {/* Login Card */}
+        {/* Signup Card */}
         <div
           style={{
             background: '#FFFFFF',
@@ -48,14 +101,14 @@ export default function LoginPage() {
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
           }}
         >
-          {/* Avatar/Profile placeholder */}
+          {/* Avatar placeholder */}
           <div style={{ textAlign: 'center', marginBottom: '24px' }}>
             <div
               style={{
                 width: '80px',
                 height: '80px',
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%)',
+                background: 'linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%)',
                 margin: '0 auto',
                 display: 'flex',
                 alignItems: 'center',
@@ -63,7 +116,7 @@ export default function LoginPage() {
                 fontSize: '36px'
               }}
             >
-              👋
+              ✨
             </div>
           </div>
 
@@ -81,6 +134,36 @@ export default function LoginPage() {
           )}
 
           <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: '16px' }}>
+              <label
+                htmlFor="name"
+                style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#1A1A1A', marginBottom: '8px' }}
+              >
+                Namn
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ditt namn"
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '14px',
+                  border: '2px solid #E5E7EB',
+                  fontSize: '15px',
+                  color: '#1A1A1A',
+                  background: '#FFFFFF',
+                  outline: 'none',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
             <div style={{ marginBottom: '16px' }}>
               <label
                 htmlFor="email"
@@ -122,11 +205,11 @@ export default function LoginPage() {
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Minst 6 tecken"
                 style={{
                   width: '100%',
                   padding: '14px 16px',
@@ -141,17 +224,34 @@ export default function LoginPage() {
               />
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                <input
-                  type="checkbox"
-                  style={{ width: '18px', height: '18px', accentColor: '#22C55E', borderRadius: '4px' }}
-                />
-                <span style={{ fontSize: '14px', color: '#6B7280' }}>Kom ihåg mig</span>
+            <div style={{ marginBottom: '24px' }}>
+              <label
+                htmlFor="confirmPassword"
+                style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#1A1A1A', marginBottom: '8px' }}
+              >
+                Bekräfta lösenord
               </label>
-              <a href="#" style={{ fontSize: '14px', color: '#1A1A1A', fontWeight: '500', textDecoration: 'none' }}>
-                Glömt lösenord?
-              </a>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Upprepa lösenord"
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '14px',
+                  border: '2px solid #E5E7EB',
+                  fontSize: '15px',
+                  color: '#1A1A1A',
+                  background: '#FFFFFF',
+                  outline: 'none',
+                  boxSizing: 'border-box'
+                }}
+              />
             </div>
 
             <button
@@ -160,7 +260,7 @@ export default function LoginPage() {
               style={{
                 width: '100%',
                 padding: '16px',
-                background: loading ? '#9CA3AF' : '#1A1A1A',
+                background: loading ? '#9CA3AF' : '#22C55E',
                 color: '#FFFFFF',
                 borderRadius: '14px',
                 fontSize: '16px',
@@ -168,10 +268,10 @@ export default function LoginPage() {
                 border: 'none',
                 cursor: loading ? 'not-allowed' : 'pointer',
                 marginBottom: '16px',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 4px 12px rgba(34, 197, 94, 0.25)'
               }}
             >
-              {loading ? 'Loggar in...' : 'Logga in'}
+              {loading ? 'Skapar konto...' : 'Skapa konto'}
             </button>
 
             {/* Divider */}
@@ -211,9 +311,9 @@ export default function LoginPage() {
           </form>
 
           <p style={{ textAlign: 'center', marginTop: '24px', fontSize: '14px', color: '#6B7280' }}>
-            Inget konto än?{' '}
-            <Link to="/signup" style={{ color: '#1A1A1A', fontWeight: '600', textDecoration: 'none' }}>
-              Registrera dig här
+            Har du redan ett konto?{' '}
+            <Link to="/login" style={{ color: '#1A1A1A', fontWeight: '600', textDecoration: 'none' }}>
+              Logga in här
             </Link>
           </p>
         </div>

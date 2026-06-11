@@ -2,33 +2,176 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Design System - Inspired by Planner App (Emote)
+
+  Colors:
+  - Background: #E8F4F2 (soft mint)
+  - Cards: #FFFFFF
+  - Primary: #1A1A1A (dark text)
+  - Accent Green: #22C55E
+  - Accent Purple: #A78BFA
+  - Accent Pink: #FDA4AF
+  - Accent Orange: #FB923C
+  - Muted text: #6B7280
+*/
+
+:root {
+  --color-bg: #E8F4F2;
+  --color-bg-card: #FFFFFF;
+  --color-primary: #1A1A1A;
+  --color-muted: #6B7280;
+  --color-accent-green: #22C55E;
+  --color-accent-purple: #A78BFA;
+  --color-accent-pink: #FDA4AF;
+  --color-accent-orange: #FB923C;
+  --color-accent-mint: #6EE7B7;
+  --color-success-bg: #DCFCE7;
+  --color-purple-bg: #EDE9FE;
+  --color-pink-bg: #FCE7F3;
+  --radius-card: 20px;
+  --radius-button: 14px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-button: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+}
+
+/* Page backgrounds */
+.home-page {
+  background-color: var(--color-bg) !important;
+  min-height: 100vh;
+}
+
+.login-page {
+  background-color: var(--color-bg) !important;
+  min-height: 100vh;
+}
+
+.dashboard-page {
+  background-color: var(--color-bg) !important;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+p {
+  color: var(--color-muted);
+}
+
+/* Card styles */
+.card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-radius: var(--radius-button);
+  padding: 14px 28px;
+  font-weight: 600;
+  border: none;
+  box-shadow: var(--shadow-button);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-card) !important;
+  color: var(--color-primary) !important;
+  border: 2px solid #E5E7EB;
+  border-radius: var(--radius-button);
+  padding: 14px 28px;
+  font-weight: 600;
+}
+
+/* Accent colors for tags/badges */
+.badge-green {
+  background-color: var(--color-success-bg);
+  color: var(--color-accent-green);
+}
+
+.badge-purple {
+  background-color: var(--color-purple-bg);
+  color: #7C3AED;
+}
+
+.badge-pink {
+  background-color: var(--color-pink-bg);
+  color: #EC4899;
+}
+
+/* Checkbox/checkmark styles */
+.checkbox-done {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.checkbox-pending {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #E5E7EB;
+  background-color: white;
+}
+
+/* Star rating */
+.stars {
+  color: #FBBF24;
+}
+
+/* Illustrations placeholder */
+.illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
 @layer base {
   :root {
-    font-family: 'Inter var', 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.5;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
     font-weight: 400;
-
     color-scheme: light;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    @apply m-0 min-h-screen bg-gray-50 text-gray-900;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold;
   }
 }
 
 @layer components {
-  /* Custom component styles will go here */
+  /* Reusable component styles */
 }
 
 @layer utilities {
-  /* Custom utility classes will go here */
+  /* Custom utilities */
 }
